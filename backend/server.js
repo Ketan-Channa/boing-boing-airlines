@@ -171,8 +171,8 @@ const initDb = async () => {
         ddate            VARCHAR(255),
         return_date      VARCHAR(255),
         ticket_type      VARCHAR(30),
-        cabin_class      VARCHAR(30)  DEFAULT 'ECONOMY',
-        seat_number      VARCHAR(10),
+        cabin_class      VARCHAR(255) DEFAULT 'ECONOMY',
+        seat_number      VARCHAR(255),
         meal_included    TINYINT(1)   DEFAULT 0,
         wifi_included    TINYINT(1)   DEFAULT 0,
         total_price      INT          DEFAULT 0,
@@ -185,8 +185,8 @@ const initDb = async () => {
       )
     `);
     const resAlters = [
-      "ALTER TABLE reservation ADD COLUMN cabin_class VARCHAR(30) DEFAULT 'ECONOMY'",
-      "ALTER TABLE reservation ADD COLUMN seat_number VARCHAR(10)",
+      "ALTER TABLE reservation ADD COLUMN cabin_class VARCHAR(255) DEFAULT 'ECONOMY'",
+      "ALTER TABLE reservation ADD COLUMN seat_number VARCHAR(255)",
       "ALTER TABLE reservation ADD COLUMN meal_included TINYINT(1) DEFAULT 0",
       "ALTER TABLE reservation ADD COLUMN wifi_included TINYINT(1) DEFAULT 0",
       "ALTER TABLE reservation ADD COLUMN total_price INT DEFAULT 0",
@@ -205,7 +205,9 @@ const initDb = async () => {
       "ALTER TABLE reservation MODIFY COLUMN nationality VARCHAR(255)",
       "ALTER TABLE reservation MODIFY COLUMN flightname VARCHAR(255)",
       "ALTER TABLE reservation MODIFY COLUMN src VARCHAR(255)",
-      "ALTER TABLE reservation MODIFY COLUMN dest VARCHAR(255)"
+      "ALTER TABLE reservation MODIFY COLUMN dest VARCHAR(255)",
+      "ALTER TABLE reservation MODIFY COLUMN seat_number VARCHAR(255)",
+      "ALTER TABLE reservation MODIFY COLUMN cabin_class VARCHAR(255) DEFAULT 'ECONOMY'"
     ];
     for (const sql of resAlters) { try { await db.query(sql); } catch (e) { } }
 
