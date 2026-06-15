@@ -13,6 +13,7 @@ app.use(express.json());
 const db = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
+  port: process.env.DB_PORT || 3306,
   password: process.env.DB_PASSWORD || 'Kets.8865',
   database: process.env.DB_DATABASE || 'airlinemanagementsystem',
   // Render environments sometimes require SSL connections for cloud databases
