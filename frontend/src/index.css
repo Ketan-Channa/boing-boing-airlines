@@ -1,0 +1,1432 @@
+/* index.css - Custom styling for Boing Boing Airlines Management Portal */
+
+:root {
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+
+  /* Premium Aviator Theme Colors */
+  --bg-base: #0f172a; /* Slate 900 */
+  --bg-surface: #1e293b; /* Slate 800 */
+  --bg-surface-glass: rgba(30, 41, 59, 0.75);
+  --border-glow: rgba(56, 189, 248, 0.2); /* Sky 400 */
+  
+  --primary: #38bdf8; /* Sky 400 */
+  --primary-hover: #0ea5e9; /* Sky 500 */
+  --primary-glow: rgba(56, 189, 248, 0.4);
+  
+  --secondary: #818cf8; /* Indigo 400 */
+  --secondary-hover: #6366f1; /* Indigo 500 */
+  
+  --accent: #f59e0b; /* Amber 500 */
+  
+  --text-primary: #f8fafc; /* Slate 50 */
+  --text-secondary: #94a3b8; /* Slate 400 */
+  --text-muted: #64748b; /* Slate 500 */
+  
+  --success: #10b981; /* Emerald 500 */
+  --danger: #ef4444; /* Red 500 */
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px var(--border-glow); }
+  50% { box-shadow: 0 0 25px var(--primary-glow); }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Main App Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Login Page Styles */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.login-card {
+  background: var(--bg-surface-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: fadeIn var(--transition-normal);
+  z-index: 10;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.login-logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  width: 280px;
+  background: var(--bg-surface);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.sidebar-brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  padding-left: 0.5rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.sidebar-category {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  text-transform: uppercase;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+}
+
+.sidebar-item.active {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+}
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  background: #090d16;
+}
+
+/* Header */
+.top-header {
+  height: 70px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  flex-shrink: 0;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-glow);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+/* Content Container */
+.content-body {
+  padding: 2rem;
+  flex-grow: 1;
+  animation: fadeIn var(--transition-fast);
+}
+
+/* Dashboard View */
+.hero-banner {
+  height: 300px;
+  border-radius: var(--radius-lg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0.4) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  max-width: 600px;
+}
+
+/* Quick Action Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card:nth-child(2n) .stat-icon {
+  background: rgba(129, 140, 248, 0.1);
+  color: var(--secondary);
+}
+
+.stat-card:nth-child(3n) .stat-icon {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--accent);
+}
+
+.stat-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.stat-desc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Forms & Panels */
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+.panel-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.panel-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Two-column Layout for Forms and Images */
+.layout-split {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.layout-form {
+  flex: 1;
+}
+
+.layout-image-container {
+  width: 40%;
+  max-width: 400px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.layout-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+/* Form Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input, .form-select {
+  font-family: var(--font-primary);
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-glow);
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  height: 44px; /* Align with other inputs */
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.radio-input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.radio-input:checked {
+  border-color: var(--primary);
+}
+
+.radio-input:checked::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #0f172a;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  box-shadow: 0 0 15px var(--primary-glow);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #dc2626;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Lookup Field (Inputs with inline buttons) */
+.lookup-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.lookup-group .form-input {
+  flex-grow: 1;
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.3);
+  margin-top: 1rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9375rem;
+}
+
+.data-table th {
+  background: rgba(30, 41, 59, 0.9);
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.data-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.data-table tbody tr {
+  transition: var(--transition-fast);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Search Bar (Tables filter) */
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.search-input-wrapper .form-input {
+  width: 100%;
+  padding-left: 2.5rem;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+  text-align: center;
+  gap: 1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: var(--text-muted);
+}
+
+/* Boarding Pass Design - physical boarding pass aesthetic */
+.boarding-pass-print-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.boarding-pass-card {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #0f172a; /* Dark text for boarding pass */
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Outfit', sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  margin: 0 auto;
+}
+
+/* Perforation dashed line */
+.boarding-pass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 250px;
+  height: 100%;
+  width: 0;
+  border-left: 2px dashed #cbd5e1;
+  z-index: 10;
+}
+
+/* Perforation circular cutouts */
+.boarding-pass-cutout-top {
+  position: absolute;
+  top: -15px;
+  right: 235px;
+  width: 30px;
+  height: 30px;
+  background: #1e293b; /* Matches layout content background or panel background */
+  border-radius: 50%;
+  z-index: 12;
+}
+
+.boarding-pass-cutout-bottom {
+  position: absolute;
+  bottom: -15px;
+  right: 235px;
+  width: 30px;
+  height: 30px;
+  background: #1e293b;
+  border-radius: 50%;
+  z-index: 12;
+}
+
+.main-pass {
+  flex: 1;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+}
+
+.pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pass-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pass-logo {
+  font-size: 1.75rem;
+  color: #1e3a8a;
+  font-weight: 800;
+}
+
+.pass-title {
+  font-weight: 800;
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.flight-destinations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.destination-airport {
+  display: flex;
+  flex-direction: column;
+}
+
+.airport-code {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1e3a8a;
+  line-height: 1;
+}
+
+.airport-name {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.flight-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  padding: 0 1.5rem;
+}
+
+.flight-icon-line {
+  width: 100%;
+  height: 2px;
+  background-color: #cbd5e1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.flight-icon-plane {
+  background: white;
+  padding: 0 0.5rem;
+  z-index: 2;
+  color: #38bdf8;
+  font-size: 1.5rem;
+}
+
+.passenger-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem 1rem;
+  margin-top: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Pass Stub (Right Side) */
+.stub-pass {
+  width: 250px;
+  padding: 2.25rem 1.5rem;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.stub-header {
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.stub-destinations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.stub-airport-code {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.stub-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Barcode */
+.barcode-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.barcode {
+  width: 100%;
+  height: 40px;
+  background: repeating-linear-gradient(
+    90deg,
+    #0f172a,
+    #0f172a 2px,
+    transparent 2px,
+    transparent 6px,
+    #0f172a 6px,
+    #0f172a 10px,
+    transparent 10px,
+    transparent 12px
+  );
+  opacity: 0.85;
+}
+
+.barcode-text {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Notifications / Alerts */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-surface);
+  border-left: 4px solid var(--success);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 100;
+  animation: slideIn var(--transition-fast);
+}
+
+.toast.error {
+  border-left-color: var(--danger);
+}
+
+.toast.info {
+  border-left-color: var(--primary);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Print / Save-as-PDF  –  boarding pass from BookFlightView
+   ───────────────────────────────────────────────────────────────────────────── */
+@media print {
+  /* Page setup: landscape, no margins */
+  @page {
+    size: A4 landscape;
+    margin: 0.6cm;
+  }
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Then reveal ONLY the boarding pass card and its children */
+  #printable-boarding-pass,
+  #printable-boarding-pass * {
+    visibility: visible !important;
+  }
+
+  /* Also support the standalone BoardingPassView */
+  .boarding-pass-card,
+  .boarding-pass-card * {
+    visibility: visible !important;
+  }
+
+  /* Position the card to fill the page */
+  #printable-boarding-pass,
+  .boarding-pass-card {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Strip UI chrome */
+  .no-print,
+  .sidebar,
+  .top-header,
+  .boarding-pass-print-btn,
+  .boarding-pass-cutout-top,
+  .boarding-pass-cutout-bottom {
+    display: none !important;
+  }
+
+  /* Ensure the boarding-pass-card colours print */
+  .main-pass  { background: #fff !important; }
+  .stub-pass  { background: #f8fafc !important; }
+
+  /* Force text colours for print */
+  .pass-logo  { color: #1e3a8a !important; }
+  .airport-code { color: #1e3a8a !important; }
+  .stub-airport-code { color: #1e3a8a !important; }
+  .barcode { opacity: 1 !important; }
+}
+
+/* Splash Screen Styles */
+.splash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 70%, #020617 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+.splash-container.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.splash-logo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.1);
+  animation: logoPulse 3s infinite ease-in-out;
+}
+
+.splash-plane-icon {
+  color: var(--primary);
+  animation: planeFloat 4s infinite ease-in-out;
+}
+
+.splash-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 3rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  animation: textShift 6s infinite alternate;
+}
+
+.splash-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.splash-loader-track {
+  width: 280px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.splash-loader-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 100%);
+  box-shadow: 0 0 12px var(--primary-glow);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.splash-status-text {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  height: 20px;
+  animation: statusFade 0.5s ease-out;
+}
+
+/* Animations for Splash */
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.15);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 60px rgba(56, 189, 248, 0.25);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+}
+
+@keyframes planeFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(48deg);
+  }
+}
+
+@keyframes textShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(15deg); }
+}
+
+@keyframes statusFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Additional Auth Page Elements */
+.auth-switch-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.auth-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.25rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.auth-link:hover {
+  color: var(--primary-hover);
+  text-shadow: 0 0 8px var(--primary-glow);
+}
+
+.auth-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.auth-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.auth-checkbox {
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.auth-step-desc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.auth-security-question-box {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9375rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Enhanced Splash Screen (v2 — with percentage loading bar)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Starfield dots */
+.splash-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle var(--dur, 3s) infinite ease-in-out;
+  opacity: 0.4;
+}
+@keyframes twinkle {
+  0%,100% { opacity:0.1; transform:scale(0.8); }
+  50%      { opacity:0.8; transform:scale(1.2); }
+}
+
+/* Flying plane silhouette */
+.splash-plane {
+  position: absolute;
+  top: 12%;
+  left: -60px;
+  font-size: 2.5rem;
+  color: rgba(56,189,248,0.25);
+  animation: flyAcross 8s linear infinite;
+}
+@keyframes flyAcross {
+  0%   { left: -60px; }
+  100% { left: calc(100vw + 60px); }
+}
+
+/* Logo ring */
+.splash-logo-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(129,140,248,0.15));
+  border: 2px solid rgba(56,189,248,0.3);
+  box-shadow: 0 0 60px rgba(56,189,248,0.2);
+  display: flex; align-items: center; justify-content: center;
+  animation: ringPulse 3s infinite ease-in-out;
+}
+@keyframes ringPulse {
+  0%,100% { box-shadow: 0 0 40px rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.25); }
+  50%     { box-shadow: 0 0 80px rgba(56,189,248,0.35); border-color: rgba(56,189,248,0.6);  }
+}
+.splash-logo-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  animation: iconFloat 4s infinite ease-in-out;
+}
+@keyframes iconFloat {
+  0%,100% { transform: translateY(0) rotate(45deg); }
+  50%     { transform: translateY(-8px) rotate(50deg); }
+}
+
+/* Title */
+.splash-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #fff 20%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-align: center;
+}
+.splash-tagline {
+  color: var(--text-muted);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Progress bar container */
+.splash-progress-container {
+  width: min(380px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.splash-progress-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.splash-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  border-radius: 99px;
+  transition: width 0.08s linear;
+  position: relative;
+  box-shadow: 0 0 12px rgba(56,189,248,0.5);
+}
+.splash-progress-shimmer {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shimmer 1s infinite;
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-40px); }
+  100% { transform: translateX(40px);  }
+}
+.splash-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.splash-phase {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-style: italic;
+  transition: all 0.3s;
+}
+.splash-percent {
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: var(--primary);
+  font-family: monospace;
+  letter-spacing: 0.05em;
+}
+.splash-credit {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+.splash-credit strong {
+  color: var(--secondary);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Step / Progress Wizard Indicator
+   ───────────────────────────────────────────────────────────────────────────── */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8125rem;
+  border: 2px solid rgba(255,255,255,0.1);
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.step-item.active  .step-circle { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 0 16px rgba(56,189,248,0.4); }
+.step-item.done    .step-circle { background: var(--success); border-color: var(--success); color: #fff; }
+.step-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+.step-item.active  .step-label { color: var(--primary); font-weight: 800; }
+.step-item.done    .step-label { color: var(--success); }
+.step-line {
+  height: 2px;
+  width: 36px;
+  background: rgba(255,255,255,0.08);
+  margin: 0 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Form Section Label (decorative sub-header in forms)
+   ───────────────────────────────────────────────────────────────────────────── */
+.form-section-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Search input wrapper (icon inside input)
+   ───────────────────────────────────────────────────────────────────────────── */
+.search-input-wrapper {
+  position: relative;
+}
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
