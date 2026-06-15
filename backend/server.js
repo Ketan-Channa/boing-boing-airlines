@@ -462,5 +462,9 @@ app.post('/api/coupons/validate', async (req, res) => {
   } catch (e) { return res.status(500).json({ success: false, message: 'Internal Server Error' }); }
 });
 
+app.get('/', (req, res) => {
+  res.send('✈️ BOING-BOING AIRLINES BACKEND SERVER IS RUNNING SUCCESSFULLY! ✈️');
+});
+
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
